@@ -15,8 +15,8 @@ try{
 
   $token = $result['id'];
   $customer=$stripe->customers->create([
-  	'name'=>'yudhbir2 singh',
-  	'email'=>'yudhbir@test2.com',
+  	'name'=>'dev singh',
+  	'email'=>'dev@test2.com',
    	// 'address' => [
     //       'line1' => '510 Townsend St',
     //       'postal_code' => '98140',
@@ -31,13 +31,23 @@ try{
   );
   $result_charge=$stripe->charges->create([
   	'customer'=>$customer->id,	
-    'amount' => 3000, // it is represent the cents to make it doller multiple with 100
+    'amount' => (2000)*100, // it is represent the cents to make it doller multiple with 100
     'currency' => 'usd',
     // 'source' => $token,
     'description' => 'My First Test Charge (created for API docs)',  
   ]);
 
-  echo "<pre>";print_r($result_charge);echo"</pre>";
+  // echo "<pre>";print_r($result_charge);echo"</pre>";
+  if($result_charge->status=="succeeded"){
+      $data = array();
+      $data['payment_id'] = $result_charge->id;
+      $data['amount'] = $result_charge->amount;
+      $data['currency'] = $result_charge->currency;
+      $data['customer'] = $result_charge->customer;
+      $data['card_type'] = $result_charge->payment_method_details->card->brand;
+      echo "<pre>";print_r($data);echo"</pre>";
+
+  }
 } catch(Stripe_CardError $e) {
   // Since it's a decline, Stripe_CardError will be caught
   $body = $e->getJsonBody();

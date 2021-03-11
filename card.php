@@ -54,3 +54,4 @@
  <script src="payment.js"></script>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.css">
  <!-- For reference : https://codepen.io/devsachin/pen/WMreoe -->
+ <!-- For reference of validate on btn click: https://stackoverflow.com/questions/15439171/jquery-validation-plugin-validating-form-on-button-click -->
