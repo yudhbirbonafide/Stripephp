@@ -31,7 +31,7 @@ try{
   );
   $result_charge=$stripe->charges->create([
   	'customer'=>$customer->id,	
-    'amount' => 3000,
+    'amount' => 3000, // it is represent the cents to make it doller multiple with 100
     'currency' => 'usd',
     // 'source' => $token,
     'description' => 'My First Test Charge (created for API docs)',  
@@ -57,7 +57,6 @@ try{
   // Display a very generic error to the user, and maybe send
   // yourself an email
 } catch (Exception $e) {
-  $error = $e->getMessage();
-  
+  $error = $e->getMessage();  
   // Something else happened, completely unrelated to Stripe
 }
